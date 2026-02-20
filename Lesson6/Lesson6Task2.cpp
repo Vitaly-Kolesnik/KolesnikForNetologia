@@ -14,10 +14,6 @@ int calculatePower(int value, int power)
 
 void printResult(int result, int value, int power)
 {
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-    std::setlocale(LC_ALL, "Russian");
-
     std::cout << value << " в степени " << power << " = " << result << std::endl;
 }
 
