@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 struct BankAccount {
     int accountNumber;
@@ -16,20 +15,20 @@ int main()
 {
     setlocale(LC_ALL, "Russian");
     BankAccount userAccount;
-    std::cout << "Ââåäèòå íîìåð ñ÷¸òà: ";
+    std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã­Ã®Ã¬Ã¥Ã° Ã±Ã·Â¸Ã²Ã : ";
     std::cin >> userAccount.accountNumber;
-    std::cout << "Ââåäèòå èìÿ âëàäåëüöà: ";
+    std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¨Ã¬Ã¿ Ã¢Ã«Ã Ã¤Ã¥Ã«Ã¼Ã¶Ã : ";
     std::cin >> userAccount.ownerName;
-    std::cout << "Ââåäèòå áàëàíñ: ";
+    std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã¡Ã Ã«Ã Ã­Ã±: ";
     std::cin >> userAccount.balance;
 
     double newBalance;
-    std::cout << "Ââåäèòå íîâûé áàëàíñ: ";
+    std::cout << "Ã‚Ã¢Ã¥Ã¤Ã¨Ã²Ã¥ Ã­Ã®Ã¢Ã»Ã© Ã¡Ã Ã«Ã Ã­Ã±: ";
     std::cin >> newBalance;
 
     updateBalance(userAccount, newBalance);
 
-    std::cout << "Âàø ñ÷¸ò: " << userAccount.ownerName << ", "
+    std::cout << "Ã‚Ã Ã¸ Ã±Ã·Â¸Ã²: " << userAccount.ownerName << ", "
         << userAccount.accountNumber << ", "
         << userAccount.balance << std::endl;
 
