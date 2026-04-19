@@ -4,27 +4,27 @@
 
 class Address 
 {
-private:
-    std::string city;
-    std::string street;
-    int house_number;
-    int apartment_number;
+    private:
+        std::string city;
+        std::string street;
+        int house_number;
+        int apartment_number;
 
-public:
-    Address(std::string city, std::string street, int house, int apartment)
-        : city(city), street(street), house_number(house), apartment_number(apartment) 
-    {
-    }
-
-    std::string get_city() const 
-    {
-        return city;
-    }
-
-    std::string get_output_address() const 
-    {
-        return city + ", " + street + ", " + std::to_string(house_number) + ", " + std::to_string(apartment_number);
-    }
+    public:
+        Address(std::string city, std::string street, int house, int apartment)
+            : city(city), street(street), house_number(house), apartment_number(apartment) 
+        {
+        }
+    
+        std::string get_city() const 
+        {
+            return city;
+        }
+    
+        std::string get_output_address() const 
+        {
+            return city + ", " + street + ", " + std::to_string(house_number) + ", " + std::to_string(apartment_number);
+        }
 };
 
 void sort_addresses(Address** addresses, int size) 
@@ -43,7 +43,8 @@ void sort_addresses(Address** addresses, int size)
     }
 }
 
-int main() {
+int main() 
+{
     setlocale(LC_ALL, "Russian");
     std::ifstream fin("in.txt");
     if (!fin.is_open()) 
