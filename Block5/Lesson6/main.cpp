@@ -24,7 +24,7 @@ int main()
         std::getline(std::cin, input);
         std::cout << "Наивный хэш строки " << input << " = " << simple_string_hash(input) << std::endl;
 
-    } while (input != "exit"); // Цикл продолжается, пока пользователь не ввел "exit"
+    } while (input != "exit");
 
     return 0;
 }
