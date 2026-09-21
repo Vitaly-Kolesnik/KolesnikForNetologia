@@ -50,7 +50,6 @@ public:
         std::cout << "Структура БД создана.\n";
     }
 
-    // 2. Добавление клиента (INSERT)
     int addClient(const std::string& firstName, const std::string& lastName, const std::string& email) {
         pqxx::connection c(connectionString);
         pqxx::work w(c);
