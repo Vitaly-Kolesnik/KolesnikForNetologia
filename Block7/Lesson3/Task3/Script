@@ -1,0 +1,33 @@
+SELECT g.name AS genre_name, COUNT(ga.artist_id) AS artists_count
+FROM genres g
+LEFT JOIN genre_artist ga ON g.id = ga.genre_id
+GROUP BY g.id, g.name
+ORDER BY artists_count DESC;
+
+SELECT COUNT(t.id) AS tracks_count
+FROM tracks t
+JOIN albums a ON t.album_id = a.id
+WHERE a.release_year BETWEEN 2019 AND 2020;
+
+SELECT a.title AS album_title, ROUND(AVG(t.duration), 2) AS avg_duration_sec
+FROM albums a
+JOIN tracks t ON a.id = t.album_id
+GROUP BY a.id, a.title;
+
+SELECT ar.name
+FROM artists ar
+WHERE ar.id NOT IN (
+    SELECT DISTINCT aa.artist_id
+    FROM artist_album aa
+    JOIN albums al ON aa.album_id = al.id
+    WHERE al.release_year = 2020
+);
+
+SELECT DISTINCT c.title AS compilation_title
+FROM compilations c
+JOIN compilation_track ct ON c.id = ct.compilation_id
+JOIN tracks t ON ct.track_id = t.id
+JOIN albums al ON t.album_id = al.id
+JOIN artist_album aa ON al.id = aa.album_id
+JOIN artists ar ON aa.artist_id = ar.id
+WHERE ar.name = 'Queen';
