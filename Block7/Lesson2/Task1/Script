@@ -1,0 +1,54 @@
+-- 1. Таблица жанров
+CREATE TABLE IF NOT EXISTS genres (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- 2. Таблица исполнителей
+CREATE TABLE IF NOT EXISTS artists (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+-- 3. Связывающая таблица: Жанры <-> Исполнители (M:N)
+CREATE TABLE IF NOT EXISTS genre_artist (
+    genre_id INT REFERENCES genres(id) ON DELETE CASCADE,
+    artist_id INT REFERENCES artists(id) ON DELETE CASCADE,
+    CONSTRAINT pk_genre_artist PRIMARY KEY (genre_id, artist_id)
+);
+
+-- 4. Таблица альбомов
+CREATE TABLE IF NOT EXISTS albums (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    release_year INT CHECK (release_year >= 1900)
+);
+
+-- 5. Связывающая таблица: Исполнители <-> Альбомы (M:N)
+CREATE TABLE IF NOT EXISTS artist_album (
+    artist_id INT REFERENCES artists(id) ON DELETE CASCADE,
+    album_id INT REFERENCES albums(id) ON DELETE CASCADE,
+    CONSTRAINT pk_artist_album PRIMARY KEY (artist_id, album_id)
+);
+
+-- 6. Таблица треков (Связь с альбомом 1:N)
+CREATE TABLE IF NOT EXISTS tracks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    duration INT NOT NULL CHECK (duration > 0),
+    album_id INT REFERENCES albums(id) ON DELETE CASCADE
+);
+
+-- 7. Таблица сборников
+CREATE TABLE IF NOT EXISTS compilations (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(150) NOT NULL,
+    release_year INT CHECK (release_year >= 1900)
+);
+
+-- 8. Связывающая таблица: Сборники <-> Треки (M:N)
+CREATE TABLE IF NOT EXISTS compilation_track (
+    compilation_id INT REFERENCES compilations(id) ON DELETE CASCADE,
+    track_id INT REFERENCES tracks(id) ON DELETE CASCADE,
+    CONSTRAINT pk_compilation_track PRIMARY KEY (compilation_id, track_id)
+);
