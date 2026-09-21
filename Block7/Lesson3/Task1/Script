@@ -1,1 +1,61 @@
+INSERT INTO genres (id, name) VALUES
+(1, 'Rock'),
+(2, 'Pop'),
+(3, 'Hip-Hop'),
+(4, 'Electronic')
+ON CONFLICT (id) DO NOTHING;
 
+INSERT INTO artists (id, name) VALUES
+(1, 'Queen'),
+(2, 'Prodigy'),
+(3, 'Linkin Park'),
+(4, 'Eminem')
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO genre_artist (genre_id, artist_id) VALUES
+(1, 1), -- Queen -> Rock
+(4, 2), -- Prodigy -> Electronic
+(1, 3), -- Linkin Park -> Rock
+(3, 4)  -- Eminem -> Hip-Hop
+ON CONFLICT DO NOTHING;
+
+INSERT INTO albums (id, title, release_year) VALUES
+(1, 'A Night at the Opera', 1975),
+(2, 'Music for the Jilted Generation', 1994),
+(3, 'Music to Be Murdered By', 2020),
+(4, 'One More Light', 2017)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO artist_album (artist_id, album_id) VALUES
+(1, 1), -- Queen -> A Night at the Opera
+(2, 2), -- Prodigy -> Music for the Jilted Generation
+(4, 3), -- Eminem -> Music to Be Murdered By
+(3, 4)  -- Linkin Park -> One More Light
+ON CONFLICT DO NOTHING;
+
+INSERT INTO tracks (id, title, duration, album_id) VALUES
+(1, 'Bohemian Rhapsody', 354, 1),
+(2, 'You My Best Friend', 172, 1),
+(3, 'Voodoo People', 207, 2),
+(4, 'Godzilla', 210, 3),
+(5, 'My Life', 240, 3),
+(6, 'Heavy', 169, 4),
+(7, 'Мой день', 215, 4)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO compilations (id, title, release_year) VALUES
+(1, 'Greatest Hits 2019', 2019),
+(2, 'Best of Rock 2020', 2020),
+(3, 'Legends of 90s', 2015),
+(4, 'World Hits', 2018)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO compilation_track (compilation_id, track_id) VALUES
+(1, 1), -- Greatest Hits 2019 <- Bohemian Rhapsody
+(1, 5), -- Greatest Hits 2019 <- My Life
+(2, 1), -- Best of Rock 2020 <- Bohemian Rhapsody
+(2, 6), -- Best of Rock 2020 <- Heavy
+(2, 7), -- Best of Rock 2020 <- Мой день
+(3, 3), -- Legends of 90s <- Voodoo People
+(4, 4)  -- World Hits <- Godzilla
+ON CONFLICT DO NOTHING;
